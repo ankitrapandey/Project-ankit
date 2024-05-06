@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //      half right pyramid
+        document.write(" half right pyramid","<br>")
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j <= i; j++) {
+                document.write('*')
+            }
+            document.write("<br>")
+        }
+
+         // left half pyramid
+         document.write('left half pyramid<br>')
+        for (let i = 0 ; i<=5 ; i++) {
+            for (let k=0 ; k<=5-i ; k++) {
+                document.write("&nbsp&nbsp&nbsp")
+            }
+            for (let j = 0 ; j<=i ; j++) {
+                document.write("*&nbsp")
+            }
+            document.write("<br>")
+        }
+
+        // inverted right half pyramid
+        document.write('inverted right half pyramid', '<br>')
+
+        for (let i = 1; i <= 5; i++) {
+
+            for (let j = 5; j >= i; j--) {
+                document.write("*")
+            }
+            document.write("<br>")
+        }
+
+        //  inverted left half pyramid
+        document.write('inverted left half pyramid', "<br>")
+
+        for (let i = 0; i <= 5; i++) {
+            for (let j = 0; j <= i; j++) {
+                document.write("&nbsp&nbsp")
+            }
+            for (let k = 5; k >= i; k--) {
+                document.write("*")
+            }
+            document.write("<br>")
+        }
+
+        // full pyramid
+        document.write("full pyramid","<br>")
+        for (let i = 0 ; i<=5 ; i++) {
+            for (let k=0 ; k<=5-i ; k++) {
+                document.write("&nbsp")
+            }
+            for (let j = 0 ; j<=i ; j++) {
+                document.write("*")
+            }
+            document.write("<br>")
+        }
+
+        // Rhombus
+        document.write("Rhombus","<br>")
+        for (let i = 0 ; i<5 ; i++) {
+            for (let k=0 ; k<=5-i ; k++) {
+                document.write("&nbsp&nbsp")
+            }
+            for (let j = 0 ; j<=5 ; j++) {
+                document.write("*")
+            }
+            document.write("<br>")
+        }
+
+    </script>
+</body>
+
+</html>
