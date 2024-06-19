@@ -1,6 +1,5 @@
-
 import React, { Component } from 'react';
-import { TextField, Button, Typography,} from '@mui/material';
+import { TextField, Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 type FormData = {
@@ -23,7 +22,7 @@ const localStorageData = (): FormData[] => {
     return [];
 };
 
-class Login extends Component<{}, State> {
+class SignUp extends Component<{}, State> {
     constructor(props: {}) {
         super(props);
         this.state = {
@@ -42,16 +41,27 @@ class Login extends Component<{}, State> {
 
     handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        this.setState(
-            (prevState) => ({
-                Data: [...prevState.Data, prevState.formData],
-                submitted: true,
-                formData: { username: '', email: '', password: '' },
-            }),
-            () => localStorage.setItem('formData', JSON.stringify(this.state.Data))
+        const { formData, Data } = this.state;
+        const matched = Data.some(
+            (data) =>
+                data.username === formData.username &&
+                data.email === formData.email &&
+                data.password === formData.password
         );
-    };
 
+        if (matched) {
+            alert('Matched');
+        } 
+
+        // else {
+        // alert('Unmatched');
+        //  }
+
+        this.setState({
+            formData: { username: '', email: '', password: '' },
+            submitted: true,
+        });
+    };
 
     componentDidMount() {
         const data = localStorageData();
@@ -59,6 +69,7 @@ class Login extends Component<{}, State> {
             this.setState({ Data: data, submitted: true });
         }
     }
+
     componentDidUpdate(prevState: State) {
         if (prevState.Data !== this.state.Data) {
             localStorage.setItem('formData', JSON.stringify(this.state.Data));
@@ -68,11 +79,10 @@ class Login extends Component<{}, State> {
     render() {
         const { formData, Data, submitted } = this.state;
         return (
-            <div>
-                <h1>Form:-</h1>
-                <Link to={'/formdata'}></Link>
+            <div className='h-auto w-[40vw] bg-orange-300 mt-6'>
+                <h1>SIGNUP PAGE</h1>
+                
                 <form onSubmit={this.handleSubmit}>
-
                     <TextField
                         sx={{ width: '30%' }}
                         label="Username"
@@ -114,11 +124,10 @@ class Login extends Component<{}, State> {
                         Submit
                     </Button>
                 </form>
-                summited Data
                 {submitted && (
                     <div>
                         <Typography variant="h6" component="h2" gutterBottom>
-
+                            Submitted Data
                         </Typography>
                         {Data.map((data, index) => (
                             <div key={index}>
@@ -129,11 +138,9 @@ class Login extends Component<{}, State> {
                         ))}
                     </div>
                 )}
-
             </div>
         );
     }
 }
 
-export default Login;
-
+export default SignUp;
